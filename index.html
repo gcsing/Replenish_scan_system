@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner List (Upload + Storage)</title>
+    <link rel="stylesheet" href="style.css"> <!-- Ensure filename matches your CSS file -->
+</head>
+<body>
+    <h1><strong>SOUNG YUEEN & CO LTD</strong><br>Replenish Product List</h1>
+
+    <div class="controls">
+        <!-- File Upload -->
+        <div class="file-upload-area">
+             <label for="csvFile" class="file-upload-label">Load/Update Product Data CSV:</label> <!-- Updated Label -->
+             <input type="file" id="csvFile" accept=".csv">
+             <span id="data-status"> (No data loaded)</span>
+        </div>
+
+        <!-- Manual Entry -->
+        <div class="manual-entry-area">
+            <label for="manualBarcode" class="manual-label">Enter Barcode Manually:</label>
+            <input type="text" id="manualBarcode" placeholder="Type barcode...">
+            <button id="manualAddButton" disabled>Add</button> <!-- Start disabled -->
+             <span id="manual-status" class="status-message"></span> <!-- For feedback -->
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons-area">
+            <button id="scanButton" disabled>Scan Barcode</button> <!-- Start disabled -->
+            <button id="clearButton">Clear List</button>
+            <button id="exportPdfButton">Export PDF</button>
+            <!-- Price Toggle Removed -->
+        </div>
+    </div>
+
+    <!-- Video element for the scanner -->
+    <div id="scanner-container" style="display: none;">
+         <video id="video" width="300" height="200" style="border: 1px solid gray"></video>
+         <button id="stopScanButton">Stop Scan</button>
+         <p id="scan-status">Point camera at barcode...</p>
+    </div>
+
+
+    <h2>Scanned Items:</h2>
+    <ul id="scannedItemsList">
+        <!-- Scanned items will be added here by JavaScript -->
+    </ul>
+
+    <!-- Include jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Include jsPDF autoTable Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+    <!-- Include PapaParse for robust CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <!-- Include the ZXing library for scanning -->
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+    <!-- Include your custom script -->
+    <script src="script.js"></script> <!-- Ensure filename matches your JS file -->
+</body>
+</html>

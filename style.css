@@ -1,0 +1,283 @@
+/* Inspired by Claude Dark Theme */
+:root {
+  --bg-main: #202123;         /* Dark background */
+  --bg-controls: #303134;      /* Slightly lighter background for controls/list */
+  --text-primary: #EAE6DF;     /* Off-white for main text */
+  --text-secondary: #B0B0B0;   /* Lighter grey for less important text */
+  --accent-color: #D97706;     /* Warm orange/brown accent */
+  --accent-text: #FFFFFF;      /* Text on accent background */
+  --border-color: #444447;     /* Subtle border color */
+  --error-color: #F87171;      /* Red for errors */
+  --success-color: #34D399;    /* Green for success/price */
+  --warning-color: #FBBF24;    /* Yellow for warnings */
+  --button-secondary-bg: #525255; /* Dark grey for secondary buttons */
+  --button-secondary-hover: #636366;
+  --button-disabled-bg: #404144;
+  --button-disabled-text: #777;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Common modern font stack */
+    padding: 15px;
+    background-color: var(--bg-main);
+    color: var(--text-secondary); /* Default text color */
+    font-size: 16px; /* Slightly larger base font */
+    line-height: 1.5;
+}
+
+h1, h2 {
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 500; /* Less heavy than default bold */
+}
+h1 {
+    font-size: 2em; /* Larger main title */
+    margin-bottom: 0.8em;
+}
+h2 {
+    font-size: 1.3em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.controls {
+    text-align: center;
+    margin-bottom: 30px; /* More space below controls */
+    padding: 20px;
+    background-color: var(--bg-controls);
+    border-radius: 8px; /* Slightly more rounded */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow */
+}
+
+.file-upload-area,
+.manual-entry-area,
+.action-buttons-area {
+    margin-bottom: 18px; /* Consistent spacing */
+}
+.action-buttons-area {
+     margin-top: 15px;
+     display: flex; /* Use flexbox for alignment */
+     justify-content: center; /* Center buttons */
+     align-items: center; /* Align items vertically */
+     flex-wrap: wrap; /* Allow wrapping */
+}
+
+.file-upload-label,
+.manual-label { /* Removed toggle price label */
+    color: var(--text-secondary);
+    font-weight: normal;
+    font-size: 0.95em;
+    margin-right: 8px;
+}
+
+#data-status,
+#manual-status,
+#scan-status {
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* Status Colors */
+#data-status[style*="color: green"],
+#manual-status[style*="color: green"] { color: var(--success-color); }
+#data-status[style*="color: red"],
+#manual-status[style*="color: red"] { color: var(--error-color); }
+#data-status[style*="color: orange"],
+#manual-status[style*="color: orange"] { color: var(--warning-color); }
+
+.manual-entry-area {
+    display: flex; /* Align items nicely */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+#manualBarcode {
+    padding: 9px 12px;
+    margin-right: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    min-width: 200px; /* Give it more width */
+    background-color: var(--bg-main); /* Darker input background */
+    color: var(--text-primary);
+    font-size: 0.95em;
+}
+#manualBarcode::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* Style file input slightly */
+input[type="file"] {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+input[type="file"]::file-selector-button {
+     background-color: var(--button-secondary-bg);
+     color: var(--text-primary);
+     border: none;
+     border-radius: 6px;
+     padding: 8px 12px;
+     cursor: pointer;
+     margin-right: 10px;
+     font-size: 0.9em;
+     transition: background-color 0.2s ease;
+}
+input[type="file"]::file-selector-button:hover {
+     background-color: var(--button-secondary-hover);
+}
+
+
+/* Buttons General */
+#scanButton, #clearButton, #stopScanButton, #exportPdfButton, #manualAddButton {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px; /* Adjusted padding */
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5px 8px; /* Consistent margin */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-weight: 500;
+}
+#scanButton:active, #clearButton:active, #stopScanButton:active, #exportPdfButton:active, #manualAddButton:active {
+    transform: scale(0.98); /* Subtle press effect */
+}
+
+/* Primary Actions */
+#scanButton, #manualAddButton {
+  background-color: var(--accent-color);
+  color: var(--accent-text);
+}
+#scanButton:hover:not(:disabled), #manualAddButton:hover:not(:disabled) {
+   background-color: #E48A1A; /* Slightly lighter orange on hover */
+   filter: brightness(1.1);
+}
+
+/* Secondary Actions */
+#clearButton, #exportPdfButton {
+    background-color: var(--button-secondary-bg);
+    color: var(--text-primary);
+}
+#clearButton:hover, #exportPdfButton:hover {
+    background-color: var(--button-secondary-hover);
+}
+
+#stopScanButton {
+    background-color: #B91C1C; /* Red for stop */
+    color: var(--accent-text);
+    display: none; /* Hide initially */
+}
+#stopScanButton:hover {
+    background-color: #DC2626;
+}
+
+/* Disabled State */
+#scanButton:disabled, #manualAddButton:disabled {
+   background-color: var(--button-disabled-bg);
+   color: var(--button-disabled-text);
+   cursor: not-allowed;
+   transform: none;
+}
+
+.status-message { /* Style for #manual-status */
+    margin-left: 10px;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Price Toggle CSS Removed */
+
+/* Scanned Items List */
+#scannedItemsList {
+    list-style: none;
+    padding: 0;
+    background-color: var(--bg-controls);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-width: 700px; /* Slightly wider */
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#scannedItemsList li {
+    padding: 12px 15px; /* Slightly more padding */
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between; /* Adjust if needed */
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--text-primary); /* Default list item text */
+    font-size: 0.95em;
+}
+
+#scannedItemsList li:last-child {
+    border-bottom: none;
+}
+
+#scannedItemsList li span {
+    margin: 2px 5px;
+    word-break: break-word; /* Prevent long barcodes/names from overflowing */
+}
+
+/* Barcode */
+#scannedItemsList li span:nth-child(1) {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    min-width: 100px; /* Ensure some space */
+    flex-shrink: 0; /* Don't let barcode shrink too much */
+}
+
+/* Product Name */
+.product-name {
+    flex-grow: 1;
+    font-weight: 500;
+    min-width: 150px;
+    text-align: left;
+    padding-right: 10px;
+}
+
+/* UOM */
+#scannedItemsList li span:nth-child(3) { /* Adjusted from 3 to 3 */
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    min-width: 30px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Bin Code - NEW */
+.product-bincode {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    min-width: 60px; /* Adjust as needed */
+    text-align: center;
+    flex-shrink: 0;
+    margin-left: 10px; /* Space before Bincode */
+}
+
+/* Product Price CSS Removed */
+
+/* Scanner Container */
+#scanner-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px dashed var(--border-color);
+    background-color: var(--bg-controls);
+    border-radius: 8px;
+    display: none; /* Hidden initially */
+}
+#video {
+    border: 1px solid var(--border-color);
+    max-width: 100%; /* Ensure video fits */
+    height: auto;
+    display: block; /* Prevent extra space below */
+    margin: 0 auto 10px auto; /* Center and add margin below */
+}
+#scan-status {
+    margin-top: 10px;
+    font-style: italic;
+    color: var(--text-secondary);
+}
